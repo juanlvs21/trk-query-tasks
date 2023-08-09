@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Comprar almurzo",
+      "description": "Debo ir a la tienda por mi almuerzo",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "name": "Pasear a los perros",
+      "description": "Los perros necesitan ejercitarse diariamente",
+      "completed": false
+    },
+    {
+      "name": "Ver curso",
+      "description": "Debo aprender como usar RTK Query",
+      "completed": true,
+      "id": 3
+    }
+  ]
+}
