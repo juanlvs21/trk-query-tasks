@@ -6,3 +6,14 @@ body {
 main {
   padding: 60px;
 }
+
+input,
+textarea {
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+button {
+  border-radius: 8px;
+  padding: 8px 12px;
+}

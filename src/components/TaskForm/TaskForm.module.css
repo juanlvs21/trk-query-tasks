@@ -1,0 +1,13 @@
+.taskForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.taskInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
