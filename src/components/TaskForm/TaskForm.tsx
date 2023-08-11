@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { useCreateTaskMutation } from "@/api/apiSlice";
+import { useCreateTaskMutation } from "@/store/api/apiSlice";
 import { TTaskForm } from "@/types/TTask";
 import styles from "./TaskForm.module.css";
 

@@ -2,7 +2,7 @@ import {
   useDeleteTaskMutation,
   useGetTasksQuery,
   useUpdateTaskMutation,
-} from "@/api/apiSlice";
+} from "@/store/api/apiSlice";
 import { TaskForm } from "@/components/TaskForm";
 import styles from "./TasksList.module.css";
 
