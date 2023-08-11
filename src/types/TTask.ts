@@ -4,3 +4,5 @@ export type TTask = {
   description: string;
   completed?: boolean;
 };
+
+export type TTaskForm = Omit<TTask, "id">;

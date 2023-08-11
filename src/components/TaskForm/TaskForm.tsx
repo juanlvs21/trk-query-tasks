@@ -1,18 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import styles from "./TaskForm.module.css";
-import { TTask } from "@/types/TTask";
 import { useCreateTaskMutation } from "@/api/apiSlice";
+import { TTaskForm } from "@/types/TTask";
+import styles from "./TaskForm.module.css";
 
-const formDefaultValues: TTask = {
-  id: 0,
+const formDefaultValues: TTaskForm = {
   name: "",
   description: "",
 };
 
 export const TaskForm = () => {
   const [createTask, { isLoading }] = useCreateTaskMutation();
-  const [formValues, setFormValues] = useState<TTask>(formDefaultValues);
+  const [formValues, setFormValues] = useState<TTaskForm>(formDefaultValues);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -27,12 +26,7 @@ export const TaskForm = () => {
     try {
       e.preventDefault();
 
-      const newValue = {
-        ...formValues,
-        id: new Date().getTime() + Math.floor(Math.random() * 1000000),
-      };
-
-      await createTask(newValue);
+      await createTask(formValues);
 
       setFormValues(formDefaultValues);
     } catch (error) {
@@ -62,11 +56,11 @@ export const TaskForm = () => {
           disabled={isLoading}
         ></textarea>
 
-        <button disabled={isLoading}>Agregar</button>
+        <button disabled={isLoading}>Guardar</button>
       </section>
 
       <span>
-        {isLoading ? "Creando Tarea" : "Complete los campos para agregar"}
+        {isLoading ? "Creando Tarea" : "Complete los campos para guardar"}
       </span>
     </form>
   );

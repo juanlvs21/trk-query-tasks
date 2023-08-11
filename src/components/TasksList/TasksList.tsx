@@ -1,9 +1,26 @@
-import { useGetTasksQuery } from "@/api/apiSlice";
+import {
+  useDeleteTaskMutation,
+  useGetTasksQuery,
+  useUpdateTaskMutation,
+} from "@/api/apiSlice";
 import { TaskForm } from "@/components/TaskForm";
 import styles from "./TasksList.module.css";
 
 export const TasksList = () => {
-  const { data, isLoading, isError, error } = useGetTasksQuery();
+  const { data, isLoading, isError, error } = useGetTasksQuery(undefined, {
+    refetchOnFocus: true,
+  });
+  const [deleteTask, { isLoading: isLoadingDelete }] = useDeleteTaskMutation();
+  const [updateTask, { isLoading: isLoadingUpdate }] = useUpdateTaskMutation();
+
+  const handleDeleteTask = async (id: number) => {
+    try {
+      await deleteTask(id);
+    } catch (error) {
+      console.log({ error });
+      alert("Ha ocurrido un error ");
+    }
+  };
 
   if (isLoading) {
     return <h2>Cargando Tareas</h2>;
@@ -25,10 +42,23 @@ export const TasksList = () => {
               <p>{task.description}</p>
 
               <footer className={`${styles.taskActions}`}>
-                <button>Eliminar</button>
+                <button
+                  onClick={() => handleDeleteTask(task.id)}
+                  disabled={isLoadingDelete}
+                >
+                  Eliminar
+                </button>
 
                 <div className={`${styles.taskActionsDone}`}>
-                  <input type="checkbox" id={`checkbox-${task.id}`} />
+                  <input
+                    type="checkbox"
+                    id={`checkbox-${task.id}`}
+                    onChange={(e) =>
+                      updateTask({ ...task, completed: e.target.checked })
+                    }
+                    checked={task.completed}
+                    disabled={isLoadingUpdate}
+                  />
                   <label htmlFor={`checkbox-${task.id}`}>Listo</label>
                 </div>
               </footer>
